@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+    
+	<context:annotation-config/>
+	
+
+	<bean id="simple_message_formater"
+		class="pam.tp1.format.SimpleFormatMessage" >
+	</bean>
+
+	<bean id="alertMail" 
+		class="pam.tp1.alert.AlertMail">
+	</bean>
+	<bean id="split_message_formater"
+		class="pam.tp1.format.SplitFormatMessage"  >
+			<constructor-arg name="nb" type="int" value="10" />
+	</bean>
+
+	<bean id="advanced_message_formater"
+		class="pam.tp1.format.AdvancedFormatMessage"  >
+			<constructor-arg name="lineFormater" ref="simple_message_formater" />
+			<constructor-arg name="spFormater" ref="split_message_formater" />
+	</bean>
+
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+	   <property name="host" value="smtp.gmail.com" />
+        <property name="port" value="587" />
+        <property name="username" value="pam.tp.spring@gmail.com" />
+        <property name="password" value="tp_pam2017" />
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.transport.protocol">smtp</prop>
+                <prop key="mail.smtp.auth">true</prop>
+                <prop key="mail.smtp.starttls.enable">true</prop>
+            </props>
+        </property>
+	</bean>
+
+
+</beans>

@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Tableau de bord</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<p th:text="'Bonjour mister, ' + ${name} + '!'  "/>
+
+<form action="/board/sendmail" method="post">
+
+    <label for="mail"> Mail du monsieur</label>
+    <input type="text" id="mail" name="mail">
+
+    <label for="obj"> Obj pour le monsieur</label>
+    <input type="text" id="obj" name="obj">
+
+    <label for="msg"> Msg pour le monsieur</label>
+    <input type="text" id="msg" name="msg">
+
+    <input type="submit" value="Submit">
+
+</form>
+
+</body>
+</html>
